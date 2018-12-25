@@ -6,5 +6,7 @@ Below is a list of some examples of code that is used to set up on the various c
 
 # Examples
 
-- [ ] **Example1**: Setting up of web application with a MySQL database on Google Cloud.
+- [x] **Example1**: Setting up of nginx server on Google Cloud platform.
+  - Tools: Terraform, Packer, Ansible
+- [ ] **Example2**: Setting up of python web application, load balanced, with MySQL database (Google Cloud SQL)
   - Tools: Terraform, Packer, Ansible
