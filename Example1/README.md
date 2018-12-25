@@ -30,7 +30,7 @@ There are other aspects to this to complete the full picture such as blue/green 
   - The terraform configuration file for this example infra setup
 - image_builder.json.example
   - Using packer to bake an image with all the required values
-  - Copy and adjust project value to the
+  - Copy and adjust project value to the `image_builder.json`
 - playbook.yml
   - Ansible playbook to install nginx on the server
 
