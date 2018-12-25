@@ -1,0 +1,15 @@
+{
+    "provisioners": [{
+        "type": "ansible",
+        "playbook_file": "./playbook.yml"
+    }],
+
+    "builders": [{
+        "type": "googlecompute",
+        "account_file": "account.json",
+        "project_id": "",
+        "source_image": "debian-9-stretch-v20181210",
+        "ssh_username": "packer",
+        "zone": "us-central1-a"
+    }]
+}
