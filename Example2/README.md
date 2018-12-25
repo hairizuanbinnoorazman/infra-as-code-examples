@@ -36,3 +36,19 @@ This example would take on the following:
 - Python task application
   - Has chromedriver as well as webdriver installed on it
   - Takes screenshot and saves it into GCS
+
+# Terraform Commands to run
+
+```bash
+# This would pull in the google cloud module needed to run this
+terraform init
+
+# Generates a tf plan to be executed as part of the infrastructure
+terraform plan -out=planned_infra
+
+# Apply the tf plan
+terraform apply planned_infra
+
+# Destroy the infrastructure
+terraform destroy
+```
