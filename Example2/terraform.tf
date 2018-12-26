@@ -18,9 +18,9 @@ resource "google_kms_crypto_key" "my_crypto_key" {
   key_ring        = "${google_kms_key_ring.my_key_ring.self_link}"
   rotation_period = "100000s"
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  #   lifecycle {
+  #     prevent_destroy = true
+  #   }
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -67,4 +67,38 @@ resource "google_sourcerepo_repository" "web-api-repo" {
 
 resource "google_sourcerepo_repository" "screenshot-task-repo" {
   name = "screenshot-task"
+}
+
+resource "google_cloudbuild_trigger" "web-api-build-trigger" {
+  project = "${var.project}"
+
+  trigger_template {
+    branch_name = "master"
+    project     = "${var.project}"
+    repo_name   = "${google_sourcerepo_repository.web-api-repo.name}"
+  }
+
+  filename = "cloudbuild.yaml"
+}
+
+resource "google_cloudbuild_trigger" "screenshot-task-repo" {
+  project = "${var.project}"
+
+  trigger_template {
+    branch_name = "master"
+    project     = "${var.project}"
+    repo_name   = "${google_sourcerepo_repository.screenshot-task-repo.name}"
+  }
+
+  filename = "cloudbuild.yaml"
+}
+
+resource "google_sql_database_instance" "master" {
+  name             = "master-instance"
+  database_version = "POSTGRES_9_6"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+  }
 }
