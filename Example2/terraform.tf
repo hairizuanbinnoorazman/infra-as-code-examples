@@ -39,3 +39,32 @@ resource "google_compute_firewall" "web-firewall" {
 
   source_ranges = ["0.0.0.0/0"]
 }
+
+resource "google_storage_bucket" "image-store" {
+  name          = "${var.project}-image-processor-store"
+  location      = "US"
+  storage_class = "MULTI_REGIONAL"
+}
+
+resource "google_pubsub_topic" "website-screenshot-request" {
+  name = "website-screenshot-request"
+}
+
+resource "google_pubsub_subscription" "website-worker" {
+  name  = "default-subscription"
+  topic = "${google_pubsub_topic.website-screenshot-request.name}"
+
+  ack_deadline_seconds = 30
+}
+
+resource "google_sourcerepo_repository" "ansible-scripts-repo" {
+  name = "ansible-scripts"
+}
+
+resource "google_sourcerepo_repository" "web-api-repo" {
+  name = "web-api"
+}
+
+resource "google_sourcerepo_repository" "screenshot-task-repo" {
+  name = "screenshot-task"
+}
