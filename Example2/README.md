@@ -23,9 +23,14 @@ This example would take on the following:
   - [x] Pubsub topic
   - [x] Pubsub subscription
   - [x] Google Cloud Storage Bucket
-  - Google KMS
-  - Google Source Repo
-  - Google Cloud Build
+  - [x] Google KMS
+  - [x] Google Source Repo x3
+    - Ansible scripts
+    - Web API Repo
+    - Task Repo
+  - [x] Google Cloud Build Triggers x2
+    - Web API Repo Trigger on Master
+    - Task Repo Trigger on Master
 
 # Application
 
