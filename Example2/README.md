@@ -20,8 +20,9 @@ This example would take on the following:
   - Web application instance group that can be scaled accordingly based on mem/cpu usage
   - Task application instance group that can be scaled according to items on the pubsub queue
   - Google Cloud SQL
-  - Pubsub queue
-  - Google Cloud Storage Bucket
+  - [x] Pubsub topic
+  - [x] Pubsub subscription
+  - [x] Google Cloud Storage Bucket
   - Google KMS
   - Google Source Repo
   - Google Cloud Build
@@ -36,6 +37,10 @@ This example would take on the following:
 - Python task application
   - Has chromedriver as well as webdriver installed on it
   - Takes screenshot and saves it into GCS
+
+# Cloud Build Image
+
+We would need to create a cloud build image for us to use. This cloud build image would need to contain both `ansible` and `packer` tools installed on it. The image would need to be sent to the respective GCP project for use.
 
 # Terraform Commands to run
 
