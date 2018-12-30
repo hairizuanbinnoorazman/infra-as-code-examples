@@ -77,6 +77,16 @@ gcloud services enable cloudkms.googleapis.com
 gcloud services enable storage-component.googleapis.com
 ```
 
+## Create service account
+
+We would need to temporarily create a service account with relevant scopes
+
+```
+gcloud iam service-accounts create infrastructure-manager
+gcloud projects add-iam-policy-binding {projectID} --role roles/editor --member=serviceAccount:{email}
+gcloud iam service-accounts keys create --iam-account={email} account.json
+```
+
 ## Terraform Commands to run
 
 ```bash
