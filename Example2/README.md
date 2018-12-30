@@ -47,7 +47,37 @@ This example would take on the following:
 
 We would need to create a cloud build image for us to use. This cloud build image would need to contain both `ansible` and `packer` tools installed on it. The image would need to be sent to the respective GCP project for use.
 
-# Terraform Commands to run
+# Running commands
+
+These are the set of commands to run to set everything up as expected.  
+(Note: It takes 5-10 mins to spin up a MySQL instance)  
+This set of commands are to be done assuming on a fresh google cloud project
+
+We would split the execution to several parts:
+
+1. Running commands to have enable APIs.
+2. Create the service account with `EDITOR` access. (Future developments would require the service account to have more restrictive capabilities)
+3. Run terraform and spin up infra with service account generated (part 1)
+4. Add the cloud build image to allow building of google images
+5. Start pushing code and generate the new vm images to be used for the application (part 2)
+
+## Running commands to enable APIs
+
+```
+gcloud project set project [PROJECT_ID]
+gcloud services list --available
+
+gcloud services enable sourcerepo.googleapis.com
+gcloud services enable compute.googleapis.com
+gcloud services enable pubsub.googleapis.com
+gcloud services enable sql-component.googleapis.com
+gcloud services enable sqladmin.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable cloudkms.googleapis.com
+gcloud services enable storage-component.googleapis.com
+```
+
+## Terraform Commands to run
 
 ```bash
 # This would pull in the google cloud module needed to run this
